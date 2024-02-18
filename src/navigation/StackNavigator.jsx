@@ -14,7 +14,7 @@ const LogoTitle = () => {
     return(
         <Image
         
-        style={{width: 400, height:50, alignContent: 'center', resizeMode: 'contain',}}
+        style={{width: 200, height:50, alignContent: 'center', resizeMode: 'contain',}}
         source={Logo}
         
         />

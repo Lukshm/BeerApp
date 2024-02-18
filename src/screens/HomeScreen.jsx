@@ -1,12 +1,15 @@
 import React from 'react'
-import Card from '../components/Card'
+import Cards from '../components/Card'
 import { StyleSheet, View } from 'react-native'
 
 const HomeScreen = ({navigation}) => {
   return (
         <View style={styles.container}>
             
-            <Card navigation={navigation} />
+            <Cards navigation={navigation} />
+            <Cards navigation={navigation} />
+            <Cards navigation={navigation} />
+            <Cards navigation={navigation} />
 
         </View>
   )
@@ -15,7 +18,7 @@ const HomeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#e4f2ff',
+      backgroundColor: '#FFFFFF',
       alignItems: 'center',
       justifyContent: 'center'
     },

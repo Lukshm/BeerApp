@@ -12,7 +12,7 @@ const BreweryCard = ({ name, city, country }) => {
     >
       <View style={styles.contentContainer}>
         <View style={styles.detailsContainer}>
-          <Text style={styles.nameText}>{name}</Text>
+          <Text style={styles.nameText}>Jorge</Text>
           <Text style={styles.cityText}>{city}</Text>
           <Text style={styles.countryText}>{country}</Text>
         </View>
