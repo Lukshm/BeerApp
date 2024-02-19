@@ -1,16 +1,17 @@
 import React from 'react'
-import Cards from '../components/Card'
+import Cards from '../components/Cards'
 import { StyleSheet, View } from 'react-native'
 
+
 const HomeScreen = ({navigation}) => {
+
+
+  
   return (
         <View style={styles.container}>
             
             <Cards navigation={navigation} />
-            <Cards navigation={navigation} />
-            <Cards navigation={navigation} />
-            <Cards navigation={navigation} />
-
+           
         </View>
   )
 }

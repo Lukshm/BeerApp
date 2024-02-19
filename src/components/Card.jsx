@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Card, Button } from 'react-native-ui-lib'; // Importar Card y Button de RNUILib
+import { GlobalStateContext } from '../context/Global';
 
-const BreweryCard = ({ name, city, country }) => {
+
+const BreweryCard = ({brewery, navigation }) => {
+  
+  debugger
+  
   return (
     <Card
       borderRadius={12}
@@ -12,13 +17,12 @@ const BreweryCard = ({ name, city, country }) => {
     >
       <View style={styles.contentContainer}>
         <View style={styles.detailsContainer}>
-          <Text style={styles.nameText}>Jorge</Text>
-          <Text style={styles.cityText}>{city}</Text>
-          <Text style={styles.countryText}>{country}</Text>
+          <Text style={styles.nameText}>{brewery.name}</Text>
+          <Text style={styles.cityText}>{brewery.city}</Text>
+          <Text style={styles.countryText}>{brewery.country}</Text>
         </View>
         <Button
           style={styles.favoriteButton}
-        //   iconSource={require('./path-to-star-icon.png')}
           iconStyle={styles.starIcon}
         />
       </View>
