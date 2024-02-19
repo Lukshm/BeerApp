@@ -5,8 +5,7 @@ import { GlobalStateContext } from '../context/Global';
 
 
 const BreweryCard = ({brewery, navigation }) => {
-  
-  debugger
+
   
   return (
     <Card
@@ -35,7 +34,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     width: '90%',
     alignSelf: 'center',
-
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -44,6 +42,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 3,
+    marginBottom: 10,
   },
   contentContainer: {
     flexDirection: 'row',
@@ -54,16 +53,13 @@ const styles = StyleSheet.create({
     
   },
   nameText: {
-   
     fontWeight: 'bold',
     fontSize: 16,
   },
   cityText: {
-    
     fontSize: 14,
   },
   countryText: {
-    
     fontSize: 14,
   },
   favoriteButton: {
@@ -71,7 +67,7 @@ const styles = StyleSheet.create({
   },
   starIcon: {
     
-    tintColor: '#FFD700', 
+    tintColor: '#EDB332', 
   },
 });
 
