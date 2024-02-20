@@ -1,5 +1,6 @@
 import React from 'react'
-import {StyleSheet, View, Button, Image} from 'react-native'
+import {StyleSheet, View, Image} from 'react-native'
+import { Button } from 'react-native-ui-lib'
 import beerweryLogo from './../assets/beerwery-logo.png'
 
 
@@ -9,7 +10,8 @@ const LandingScreen = ({navigation}) => {
             <Image source={beerweryLogo} style={styles.image}/>
             <Button
             style={styles.button}
-            title='INGRESAR'
+            label='INGRESAR'
+            labelStyle={styles.buttonText}
             onPress={() => navigation.navigate('HomeScreen')}
             />
         </View>
@@ -33,13 +35,16 @@ const styles = StyleSheet.create({
       alignItems: 'center'
     },
     button: {
-      fontWeight: 'bold',
-      color: '#999',
-      alignItems: 'center',
-      width: '50%',
-      height: '60%'
+      width: 200,
+      height: 50,
+      backgroundColor: '#EDB332',
 
-    }
+    },
+    buttonText: {
+      color: '#000',
+      fontWeight: 'bold',
+  
+    },
   })
 
 export default LandingScreen

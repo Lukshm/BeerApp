@@ -57,9 +57,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
-    paddingBottom: 20,
-    paddingHorizontal: 20,
+    marginBottom: 0.5,
+    paddingBottom: 0.5,
+    paddingHorizontal: 50,
     backgroundColor: '#FFFFFF'
   },
   buttonsContainer: {

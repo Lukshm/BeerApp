@@ -30,6 +30,7 @@ const BreweryCard = ({brewery, navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  
   card: {
     backgroundColor: '#FFFFFF',
     width: '90%',
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 3,
-    marginBottom: 10,
+    marginBottom: 3,
   },
   contentContainer: {
     flexDirection: 'row',
