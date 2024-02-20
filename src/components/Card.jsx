@@ -1,18 +1,27 @@
 import React, {useContext} from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Card, Button } from 'react-native-ui-lib'; // Importar Card y Button de RNUILib
+import { View, Text, StyleSheet, Touchable } from 'react-native';
+import { Card, Button } from 'react-native-ui-lib';
 import { GlobalStateContext } from '../context/Global';
+import { useNavigation } from '@react-navigation/native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
-const BreweryCard = ({brewery, navigation }) => {
+const BreweryCard = ({brewery, navigation}) => {
 
+  const detailNavigation = useNavigation();
+
+  const handlePress = () => {
+    detailNavigation.navigate('DetailScreen', {brewery: brewery})
+  }
   
   return (
+    
+    
+    <TouchableOpacity onPress={handlePress}>
     <Card
-      borderRadius={12}
-      style={styles.card}
-      padding-20
-      margin-20
+    borderRadius={12}
+    style={styles.card}
+   
     >
       <View style={styles.contentContainer}>
         <View style={styles.detailsContainer}>
@@ -23,9 +32,10 @@ const BreweryCard = ({brewery, navigation }) => {
         <Button
           style={styles.favoriteButton}
           iconStyle={styles.starIcon}
-        />
+          />
       </View>
     </Card>
+          </TouchableOpacity>
   );
 };
 
@@ -44,6 +54,8 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 3,
     marginBottom: 3,
+    padding:20,
+    margin:20
   },
   contentContainer: {
     flexDirection: 'row',

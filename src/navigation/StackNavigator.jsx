@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import { Image } from 'react-native'
 import LandingScreen from '../screens/LandingScreen'
 import HomeScreen from '../screens/HomeScreen'
+import DetailScreen from '../screens/DetailScreen'
 import Logo from '../assets/Beerwery.png'
 // import Favorites from '../screens/Favorites'
 
@@ -41,6 +42,7 @@ const StackNavigator = ()=>  {
             headerShown: false,
         }}/>
         <Stack.Screen name='HomeScreen' component={HomeScreen}/>
+        <Stack.Screen name="DetailScreen" component={DetailScreen} />
         {/* <Stack.Screen name='Favorites' component={Favorites}/> */}
         
         </Stack.Navigator>

@@ -3,7 +3,8 @@ import {
   StyleSheet,
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from 'react-native';
 import { GlobalStateContext } from '../context/Global';
 
@@ -12,7 +13,10 @@ const Pagination = ({ totalPages, handleClick, handleClickPrev, handleClickNext 
 
   const getPaginationButtons = () => {
     let buttons = [];
-    for (let i = 1; i <= totalPages; i++) {
+    const startPage = Math.max(1, currentPage - 20);
+    const endPage = Math.min(totalPages, currentPage + 20);
+
+    for (let i = startPage; i <= endPage; i++) {
       buttons.push(
         <TouchableOpacity
           key={i}
@@ -35,7 +39,9 @@ const Pagination = ({ totalPages, handleClick, handleClickPrev, handleClickNext 
       >
         <Text>{'<'}</Text>
       </TouchableOpacity>
-      {getPaginationButtons()}
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {getPaginationButtons()}
+      </ScrollView>
       <TouchableOpacity
         disabled={currentPage === totalPages}
         style={styles.button}
@@ -57,18 +63,19 @@ const styles = StyleSheet.create({
   button: {
     padding: 8,
     marginHorizontal: 6,
-    backgroundColor: '#FFFFF',
+    backgroundColor: '#FFFFFF',
     borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#DDD',
   },
   activeButton: {
-   padding: 8,
+    padding: 8,
     marginHorizontal: 6,
     backgroundColor: '#EDB332',
     borderRadius: 5,
-    borderColor: 'black', // Puedes cambiar esto al color que prefieras
-    borderWidth: 2, // Ajusta el grosor del borde aquí
+    borderColor: 'black',
+    borderWidth: 2,
   },
-  
   buttonText: {
     color: '#000',
   },
@@ -77,7 +84,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   }
 });
-
 
 
 

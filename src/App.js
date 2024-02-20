@@ -3,19 +3,20 @@ import {NavigationContainer} from '@react-navigation/native'
 import { StyleSheet, Text, View } from 'react-native';
 import StackNavigator from './navigation/StackNavigator'
 import { GlobalProvider } from '../src/context/Global'
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const App = () => {
   return (
-
     <NavigationContainer>
       <StatusBar style='auto'/>
       
       <GlobalProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
         <StackNavigator/>
+      </GestureHandlerRootView>
       </GlobalProvider>
 
     </NavigationContainer>
-
 
   );
 }
