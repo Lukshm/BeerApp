@@ -1,20 +1,13 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import { View, ScrollView } from "react-native";
-import BreweryCard from "../components/Card";
-import { GlobalStateContext } from "../context/Global";
-import usePagination from "../hooks/usePagination";
+import BreweryCard from "./Card";
 
-const Cards = ({ navigation }) => {
-  const { currentPageBreweries } = usePagination();
-
- 
-  
-
+const Cards = ({ navigation, breweries }) => {
   return (
     <View>
       <ScrollView>
-        {currentPageBreweries.length > 0 && currentPageBreweries.map((brewery) => (
-          <BreweryCard key={brewery.id} brewery={brewery} />
+        {breweries.map((brewery) => (
+          <BreweryCard key={brewery.id} brewery={brewery} navigation={navigation} />
         ))}
       </ScrollView>
     </View>

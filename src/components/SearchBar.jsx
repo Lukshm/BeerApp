@@ -7,9 +7,7 @@ const BreweriesSearchBar = ({ onSearch }) => {
 
   const handleSearch = (text) => {
     setSearchText(text);
-    if (onSearch) {
-      onSearch(text);
-    }
+    onSearch(text);
   };
 
   return (
@@ -18,6 +16,8 @@ const BreweriesSearchBar = ({ onSearch }) => {
         placeholder="Buscar cervecerías"
         onChangeText={handleSearch}
         value={searchText}
+        lightTheme
+        platform='android'
       />
     </View>
   );

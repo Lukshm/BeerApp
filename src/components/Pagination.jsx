@@ -1,86 +1,84 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import {
   StyleSheet,
   View,
   Text,
-  TouchableOpacity,
-  FlatList
-} from 'react-native'
-import usePagination from '../hooks/usePagination'
-import { GlobalStateContext } from '../context/Global'
+  TouchableOpacity
+} from 'react-native';
+import { GlobalStateContext } from '../context/Global';
 
-const Pagination = () => {
-  const { pages, totalPages, handleClick, handleClickPrev, handleClickNext } =
-    usePagination()
-  const { currentPage } = useContext(GlobalStateContext)
+const Pagination = ({ totalPages, handleClick, handleClickPrev, handleClickNext }) => {
+  const { currentPage } = useContext(GlobalStateContext);
+
+  const getPaginationButtons = () => {
+    let buttons = [];
+    for (let i = 1; i <= totalPages; i++) {
+      buttons.push(
+        <TouchableOpacity
+          key={i}
+          style={currentPage === i ? styles.activeButton : styles.button}
+          onPress={() => handleClick(i)}
+        >
+          <Text>{i}</Text>
+        </TouchableOpacity>
+      );
+    }
+    return buttons;
+  };
 
   return (
     <View style={styles.container}>
       <TouchableOpacity
         disabled={currentPage === 1}
-        style={styles.buttons}
-        onPress={currentPage > 1 && handleClickPrev}
+        style={styles.button}
+        onPress={handleClickPrev}
       >
         <Text>{'<'}</Text>
       </TouchableOpacity>
-
-      <FlatList
-        contentContainerStyle={styles.buttonsContainer}
-        data={pages}
-        renderItem={({ item }) => (
-          <TouchableOpacity key={item.key} onPress={() => handleClick(item)}>
-            <View
-              style={
-                currentPage === item ? styles.activeButton : styles.buttons
-              }
-            >
-              <Text>{item}</Text>
-            </View>
-          </TouchableOpacity>
-        )}
-        horizontal
-      />
-
+      {getPaginationButtons()}
       <TouchableOpacity
         disabled={currentPage === totalPages}
-        style={styles.buttons}
-        onPress={currentPage < totalPages && handleClickNext}
+        style={styles.button}
+        onPress={handleClickNext}
       >
         <Text>{'>'}</Text>
       </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 0.5,
-    paddingBottom: 0.5,
-    paddingHorizontal: 50,
-    backgroundColor: '#FFFFFF'
+    paddingVertical: 10,
   },
-  buttonsContainer: {
-    width: 237,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'space-around',
-    backgroundColor: '#FFFFFF'
-  },
-  buttons: {
+  button: {
     padding: 8,
-    margin: 10,
+    marginHorizontal: 6,
+    backgroundColor: '#FFFFF',
     borderRadius: 5,
-    backgroundColor: '#FFFFFF'
   },
   activeButton: {
-    padding: 8,
-    margin: 10,
+   padding: 8,
+    marginHorizontal: 6,
+    backgroundColor: '#EDB332',
     borderRadius: 5,
-    backgroundColor: '#EDB332'
+    borderColor: 'black', // Puedes cambiar esto al color que prefieras
+    borderWidth: 2, // Ajusta el grosor del borde aquí
+  },
+  
+  buttonText: {
+    color: '#000',
+  },
+  ellipsis: {
+    color: '#000',
+    paddingHorizontal: 12,
   }
-})
+});
 
-export default Pagination
+
+
+
+export default Pagination;

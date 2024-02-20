@@ -1,20 +1,21 @@
 import React, { useContext, useState } from "react";
+import { StyleSheet, View } from "react-native";
 import Cards from "../components/Cards";
 import Pagination from "../components/Pagination";
 import BreweriesSearchBar from "../components/SearchBar";
 import { GlobalStateContext } from "../context/Global";
-import { StyleSheet, View } from "react-native";
+import usePagination from "../hooks/usePagination";
 
 const HomeScreen = ({ navigation }) => {
   const { allBreweries } = useContext(GlobalStateContext);
   const [allBreweriesFiltered, setAllBreweriesFiltered] = useState(allBreweries);
-  
+  const paginationData = usePagination(allBreweriesFiltered);
+
   const handleSearch = (searchText) => {
     if (!searchText.trim()) {
       setAllBreweriesFiltered(allBreweries);
       return;
     }
-
     const lowercaseFilter = searchText.toLowerCase();
     const filtered = allBreweries.filter(brewery =>
       brewery.name.toLowerCase().includes(lowercaseFilter) ||
@@ -27,17 +28,19 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.searchBarContainer}>
-        <BreweriesSearchBar 
-          onSearch={handleSearch}
-        />
+        <BreweriesSearchBar onSearch={handleSearch} />
       </View>
-
       <View style={styles.cardsContainer}>
-        <Cards navigation={navigation} allBreweries={allBreweriesFiltered} />
+        <Cards navigation={navigation} breweries={paginationData.currentPageBreweries} />
       </View>
-
       <View style={styles.paginationContainer}>
-        <Pagination style={styles.pagination} />
+        <Pagination
+          totalPages={paginationData.totalPages}
+          currentPage={paginationData.currentPage}
+          handleClick={paginationData.handleClick}
+          handleClickPrev={paginationData.handleClickPrev}
+          handleClickNext={paginationData.handleClickNext}
+        />
       </View>
     </View>
   );
