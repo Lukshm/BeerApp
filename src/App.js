@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import {NavigationContainer} from '@react-navigation/native'
-import { StyleSheet, Text, View } from 'react-native';
 import StackNavigator from './navigation/StackNavigator'
 import { GlobalProvider } from '../src/context/Global'
 import { GestureHandlerRootView } from 'react-native-gesture-handler';

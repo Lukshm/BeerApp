@@ -1,43 +1,52 @@
-import React, {useContext} from 'react';
-import { View, Text, StyleSheet, Touchable } from 'react-native';
-import { Card, Button } from 'react-native-ui-lib';
+import React, { useContext } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Card } from 'react-native-ui-lib';
 import { GlobalStateContext } from '../context/Global';
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-
-const BreweryCard = ({brewery, navigation}) => {
-
+const BreweryCard = ({ brewery }) => {
+  const { favorites, setFavorites } = useContext(GlobalStateContext);
   const detailNavigation = useNavigation();
 
+  const isFavorite = favorites.some(fav => fav.id === brewery.id);
+
   const handlePress = () => {
-    detailNavigation.navigate('DetailScreen', {brewery: brewery})
-  }
-  
+    detailNavigation.navigate('DetailScreen', { brewery: brewery });
+  };
+
+  const handleFavoritePress = () => {
+    if (isFavorite) {
+      setFavorites(favorites.filter(fav => fav.id !== brewery.id));
+    } else {
+      setFavorites([...favorites, brewery]);
+    }
+  };
+
   return (
-    
-    
     <TouchableOpacity onPress={handlePress}>
-    <Card
-    borderRadius={12}
-    style={styles.card}
-   
-    >
-      <View style={styles.contentContainer}>
-        <View style={styles.detailsContainer}>
-          <Text style={styles.nameText}>{brewery.name}</Text>
-          <Text style={styles.cityText}>{brewery.city}</Text>
-          <Text style={styles.countryText}>{brewery.country}</Text>
-        </View>
-        <Button
-          style={styles.favoriteButton}
-          iconStyle={styles.starIcon}
+      <Card borderRadius={12} style={styles.card}>
+        <View style={styles.contentContainer}>
+          <View style={styles.detailsContainer}>
+            <Text style={styles.nameText}>{brewery.name}</Text>
+            <Text style={styles.cityText}>{brewery.city}</Text>
+            <Text style={styles.countryText}>{brewery.country}</Text>
+          </View>
+
+          <Icon 
+            name={isFavorite ? "star" : "star-o"} 
+            size={25} 
+            color={isFavorite ? "#EDB332" : "#000000"}
+            
+            onPress={handleFavoritePress}
           />
-      </View>
-    </Card>
-          </TouchableOpacity>
+        </View>
+      </Card>
+    </TouchableOpacity>
   );
 };
+
 
 const styles = StyleSheet.create({
   
@@ -76,12 +85,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   favoriteButton: {
-  
+    width: 1, 
+    height: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#EDB332',
+    borderRadius: 5,
   },
-  starIcon: {
-    
-    tintColor: '#EDB332', 
-  },
+
 });
 
 export default BreweryCard;

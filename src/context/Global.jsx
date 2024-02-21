@@ -8,7 +8,8 @@ export const GlobalProvider = ({children}) => {
     const [loading, setLoading] = useState(true);
     const [allBreweriesFiltered, setAllBreweriesFiltered] = useState ([]);
     const [error, setError] = useState (null);
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1);
+    const [favorites, setFavorites] = useState([]);
   
     
     useEffect(() => {
@@ -41,7 +42,9 @@ export const GlobalProvider = ({children}) => {
           error,
           setError,
           currentPage,
-          setCurrentPage
+          setCurrentPage,
+          favorites,
+          setFavorites
         }}
         >
 
