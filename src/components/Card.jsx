@@ -25,31 +25,28 @@ const BreweryCard = ({ brewery }) => {
   };
 
   return (
-    <TouchableOpacity onPress={handlePress}>
-      <Card borderRadius={12} style={styles.card}>
-        <View style={styles.contentContainer}>
+    <Card borderRadius={12} style={styles.card}>
+      <View style={styles.contentContainer}>
+        <TouchableOpacity onPress={handlePress} style={styles.detailsTouchable}>
           <View style={styles.detailsContainer}>
             <Text style={styles.nameText}>{brewery.name}</Text>
             <Text style={styles.cityText}>{brewery.city}</Text>
             <Text style={styles.countryText}>{brewery.country}</Text>
           </View>
-
-          <Icon 
-            name={isFavorite ? "star" : "star-o"} 
-            size={25} 
-            color={isFavorite ? "#EDB332" : "#000000"}
-            
-            onPress={handleFavoritePress}
-          />
-        </View>
-      </Card>
-    </TouchableOpacity>
+        </TouchableOpacity>
+        <Icon 
+          name={isFavorite ? "star" : "star-o"} 
+          size={25} 
+          color={isFavorite ? "#EDB332" : "#000000"}
+          onPress={handleFavoritePress}
+          style={styles.favoriteIcon}
+        />
+      </View>
+    </Card>
   );
 };
 
-
 const styles = StyleSheet.create({
-  
   card: {
     backgroundColor: '#FFFFFF',
     width: '90%',
@@ -63,16 +60,16 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 3,
     marginBottom: 3,
-    padding:20,
-    margin:20
+    padding: 20,
+    margin: 20,
   },
   contentContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  detailsContainer: {
-    
+  detailsTouchable: {
+    flex: 1,
   },
   nameText: {
     fontWeight: 'bold',
@@ -83,14 +80,6 @@ const styles = StyleSheet.create({
   },
   countryText: {
     fontSize: 14,
-  },
-  favoriteButton: {
-    width: 1, 
-    height: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#EDB332',
-    borderRadius: 5,
   },
 
 });
