@@ -37,12 +37,14 @@ const StackNavigator = () => {
             <Icon name="star" size={25} color="#EDB332" />
           </TouchableOpacity>
         ),
+
+        
       }}
     >
       <Stack.Screen
         name='LandingScreen'
         component={LandingScreen}
-        options={{ headerShown: false }}
+        options={{ headerShown: false, headerBackVisible: false }}
       />
       <Stack.Screen name='HomeScreen' component={HomeScreen} />
       <Stack.Screen name="DetailScreen" component={DetailScreen} />

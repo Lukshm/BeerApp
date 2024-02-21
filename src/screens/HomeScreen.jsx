@@ -12,6 +12,7 @@ const HomeScreen = ({ navigation }) => {
   const paginationData = usePagination(allBreweriesFiltered);
 
   const handleSearch = (searchText) => {
+    
     if (!searchText.trim()) {
       setAllBreweriesFiltered(allBreweries);
       return;
